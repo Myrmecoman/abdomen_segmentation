@@ -133,3 +133,4 @@ dmypy.json
 # Custom
 data/
 numpy_arrays/
+model.hdf5
