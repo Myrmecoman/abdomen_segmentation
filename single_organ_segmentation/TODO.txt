@@ -1,2 +1,1 @@
-Self feeding waterfall model
 Transformer model
