@@ -33,19 +33,12 @@ def dice_coef_loss(y_true, y_pred):
 
 
 def AttnBlock2D(x, g, inter_channel, data_format='channels_first'):
-
     theta_x = Conv2D(inter_channel, [1, 1], strides=[1, 1], data_format=data_format)(x)
-
     phi_g = Conv2D(inter_channel, [1, 1], strides=[1, 1], data_format=data_format)(g)
-
     f = Activation('relu')(add([theta_x, phi_g]))
-
     psi_f = Conv2D(1, [1, 1], strides=[1, 1], data_format=data_format)(f)
-
     rate = Activation('sigmoid')(psi_f)
-
     att_x = multiply([x, rate])
-
     return att_x
 
 
@@ -69,15 +62,13 @@ def attention_up_and_concate(down_layer, layer, data_format='channels_first'):
 
 
 # Attention U-Net 
-def att_unet(img_w, img_h, n_label, data_format='channels_first'):
+def att_unet(img_w, img_h, n_label, data_format='channels_first', depth=4, features=32):
     inputs = Input((1, img_w, img_h))
     x = inputs
-    depth = 4
-    features = 32
     skips = []
-    for i in range(depth):
 
-        # ENCODER
+    # ENCODER
+    for i in range(depth):
         x = Conv2D(features, (3, 3), activation='relu', padding='same', data_format=data_format)(x)
         x = Dropout(0.2)(x)
         x = Conv2D(features, (3, 3), activation='relu', padding='same', data_format=data_format)(x)
