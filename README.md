@@ -1,5 +1,5 @@
 # abdomen_segmentation
-Abdomen segmentation project using a hand made UNET
+Abdomen segmentation project using 5 different models for comparisons. Le model along with their weights are available in the single_organ_segmentation folder.
 
 Dataset : https://www.synapse.org/#!Synapse:syn3193805/wiki/217789
 
